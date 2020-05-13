@@ -1,11 +1,10 @@
 using AnnotatedSentence;
 using AnnotatedTree;
-using Corpus;
 using MorphologicalDisambiguation;
 
 namespace DataGenerator.CorpusGenerator
 {
-    public class DisambiguationCorpusGenerator
+    public class TreeDisambiguationCorpusGenerator
     {
         private readonly TreeBankDrawable _treeBank;
 
@@ -17,7 +16,7 @@ namespace DataGenerator.CorpusGenerator
          * <param name="directory">Directory where the treebank files reside.</param>
          * <param name="pattern">Pattern of the tree files to be included in the treebank. Use "." for all files.</param>
          */
-        public DisambiguationCorpusGenerator(string directory, string pattern)
+        public TreeDisambiguationCorpusGenerator(string directory, string pattern)
         {
             _treeBank = new TreeBankDrawable(directory, pattern);
         }
@@ -36,7 +35,14 @@ namespace DataGenerator.CorpusGenerator
                 var parseTree = _treeBank.Get(i);
                 if (parseTree.LayerAll(ViewLayerType.INFLECTIONAL_GROUP))
                 {
-                    Sentence sentence = parseTree.GenerateAnnotatedSentence();
+                    var sentence = parseTree.GenerateAnnotatedSentence();
+                    var disambiguationSentence = new AnnotatedSentence.AnnotatedSentence("");
+                    for (var j = 0; j < sentence.WordCount(); j++)
+                    {
+                        disambiguationSentence.AddWord(new DisambiguatedWord(sentence.GetWord(j).GetName(),
+                            ((AnnotatedWord) sentence.GetWord(j)).GetParse()));
+                    }
+
                     corpus.AddSentence(sentence);
                 }
             }
