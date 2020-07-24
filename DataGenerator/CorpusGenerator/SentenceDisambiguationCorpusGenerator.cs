@@ -38,7 +38,7 @@ namespace DataGenerator.CorpusGenerator
                         ((AnnotatedWord) sentence.GetWord(j)).GetParse()));
                 }
 
-                corpus.AddSentence(sentence);
+                corpus.AddSentence(disambiguationSentence);
             }
 
             return corpus;

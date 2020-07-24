@@ -1,3 +1,4 @@
+using System;
 using AnnotatedSentence;
 using Classification.Attribute;
 using Classification.Instance;
@@ -7,19 +8,19 @@ using MorphologicalAnalysis;
 
 namespace DataGenerator.InstanceGenerator
 {
-    public class FeaturedNerInstanceGenerator : NerInstanceGenerator
+    public class FeaturedShallowParseInstanceGenerator : ShallowParseInstanceGenerator
     {
         /**
          * <summary>Constructor method. Gets input window size and sets the corresponding variable.</summary>
          * <param name="windowSize">Number of previous (next) words to be considered in adding attributes.</param>
          */
-        public FeaturedNerInstanceGenerator(int windowSize)
+        public FeaturedShallowParseInstanceGenerator(int windowSize)
         {
             this.windowSize = windowSize;
         }
 
         /**
-         * <summary>Abstract function for adding attributes to the named entity recognition problem. Depending on your design
+         * <summary>Abstract function for adding attributes to the shallow parsing problem. Depending on your design
          * you can add as many attributes as possible. The number of attributes in this function should be equal to the
          * number of attributes in the function addAttributesForEmptyWords.</summary>
          * <param name="current">Current classification instance</param>
@@ -30,7 +31,7 @@ namespace DataGenerator.InstanceGenerator
         {
             var word = (AnnotatedWord) sentence.GetWord(wordIndex);
 
-            MorphologicalParse parse = word.GetParse();
+            var parse = word.GetParse();
 
             current.AddAttribute(new IsAdjectiveAttribute(parse));
             current.AddAttribute(new IsAuxiliaryVerbAttribute(parse));
@@ -39,13 +40,10 @@ namespace DataGenerator.InstanceGenerator
             current.AddAttribute(new IsFractionAttribute(parse));
 
             current.AddAttribute(new IsHonorificAttribute(word.GetName()));
-            current.AddAttribute(new IsLocationGazetteer(word.GetName()));
             current.AddAttribute(new IsMoneyAttribute(word.GetName()));
             current.AddAttribute(new IsNumberAttribute(parse));
             current.AddAttribute(new IsOrganizationAttribute(word.GetName()));
 
-            current.AddAttribute(new IsOrganizationGazetteer(word.GetName()));
-            current.AddAttribute(new IsPersonGazetteer(word.GetName()));
             current.AddAttribute(new IsProperNounAttribute(parse));
             current.AddAttribute(new IsRealAttribute(parse));
             current.AddAttribute(new IsTimeAttribute(word.GetName()));
@@ -64,17 +62,14 @@ namespace DataGenerator.InstanceGenerator
         }
 
         /**
-         * <summary>Abstract function for adding attributes for empty words to the named entity recognition problem. The number of
+         * <summary>Abstract function for adding attributes for empty words to the shallow parsing problem. The number of
          * attributes in this function should be equal to the number of attributes in the function
-         * addAttributesForWords.</summary>
+         * addAttributesForPreviousWords.</summary>
          * <param name="current">Current classification instance</param>
          * <param name="emptyWord">String form to place for empty words.</param>
          */
-        protected override void AddAttributesForEmptyWords(Instance current, string emptyWord)
+        protected override void AddAttributesForEmptyWords(Instance current, String emptyWord)
         {
-            current.AddAttribute(new BinaryAttribute(false));
-            current.AddAttribute(new BinaryAttribute(false));
-            current.AddAttribute(new BinaryAttribute(false));
             current.AddAttribute(new BinaryAttribute(false));
             current.AddAttribute(new BinaryAttribute(false));
             current.AddAttribute(new BinaryAttribute(false));
