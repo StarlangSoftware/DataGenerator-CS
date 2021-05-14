@@ -1,6 +1,6 @@
 using AnnotatedSentence;
 using AnnotatedTree;
-using MorphologicalDisambiguation;
+using MorphologicalAnalysis;
 
 namespace DataGenerator.CorpusGenerator
 {

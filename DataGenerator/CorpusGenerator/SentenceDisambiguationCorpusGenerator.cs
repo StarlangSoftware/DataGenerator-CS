@@ -1,5 +1,5 @@
 using AnnotatedSentence;
-using MorphologicalDisambiguation;
+using MorphologicalAnalysis;
 
 namespace DataGenerator.CorpusGenerator
 {
