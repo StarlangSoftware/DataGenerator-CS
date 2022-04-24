@@ -1,7 +1,10 @@
+Data Generator
+============
+
 For Developers
 ============
 
-You can also see [Java](https://github.com/starlangsoftware/DataGenerator), [Python](https://github.com/starlangsoftware/DataGenerator-Py), [Cython](https://github.com/starlangsoftware/DataGenerator-Cy),  or [C++](https://github.com/starlangsoftware/DataGenerator-CPP) repository.
+You can also see [Java](https://github.com/starlangsoftware/DataGenerator), [Python](https://github.com/starlangsoftware/DataGenerator-Py), [Cython](https://github.com/starlangsoftware/DataGenerator-Cy), [Js](https://github.com/starlangsoftware/DataGenerator-Js), or [C++](https://github.com/starlangsoftware/DataGenerator-CPP) repository.
 
 ## Requirements
 
