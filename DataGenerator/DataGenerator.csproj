@@ -3,13 +3,13 @@
     <PropertyGroup>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>NlpToolkit-DataGenerator</PackageId>
-        <PackageVersion>1.0.4</PackageVersion>
-        <TargetFrameworks>netcoreapp3.1;net8.0</TargetFrameworks>
+        <PackageVersion>1.0.5</PackageVersion>
+        <TargetFramework>net8.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="NlpToolkit-AnnotatedTree" Version="1.0.8" />
-      <PackageReference Include="NlpToolkit-Classification" Version="1.0.6" />
+      <PackageReference Include="NlpToolkit-AnnotatedTree" Version="1.0.10" />
+      <PackageReference Include="NlpToolkit-Classification" Version="1.0.8" />
     </ItemGroup>
 
 </Project>
